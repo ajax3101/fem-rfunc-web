@@ -74,7 +74,7 @@ class TFEM:
         parser = TParser()
         for i in range(0, len(self.__params__.names)):
             parser.add_variable(self.__params__.names[i])
-        for key, value in self.__params__.var_list.items():
+        for key, value in list(self.__params__.var_list.items()):
             parser.add_variable(key, value)
         return parser
 

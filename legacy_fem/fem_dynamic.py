@@ -67,7 +67,7 @@ class TFEMDynamic(TFEMStatic):
         # Итерационный процесс по времени
         t = self.__params__.t0
         while t <= self.__params__.t1:
-            print('t = %5.2f' % t)
+            print(('t = %5.2f' % t))
             # Формирование правой части СЛАУ
             self.__create_dynamic_vector__(u0, ut0, utt0, t)
             # Учет краевых условий
