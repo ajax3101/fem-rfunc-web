@@ -339,6 +339,7 @@ def console_dynamic():
 
 
 if __name__ == "__main__":
+    pass
     # beam()
     # head3d()
     # body1d()

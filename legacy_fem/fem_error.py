@@ -35,4 +35,4 @@ class TFEMException(Exception):
             err_msg += 'incorrectly specified time parameters'
         else:
             err_msg += self.error
-        print('\033[1;31m%s\033[1;m' % err_msg)
+        print(('\033[1;31m%s\033[1;m' % err_msg))

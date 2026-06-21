@@ -6,6 +6,8 @@
 
 import os
 import sys
+import matplotlib
+matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 import numpy as np
 from matplotlib import cm
@@ -22,7 +24,7 @@ from fem_error import TFEMException
 
 # Вывод сообщения об ошибке
 def error(err_msg):
-    print('\033[1;31m%s\033[1;m' % err_msg)
+    print(('\033[1;31m%s\033[1;m' % err_msg))
 
 
 class TObject:
@@ -34,9 +36,9 @@ class TObject:
     def set_mesh(self, name):
         try:
             self.__mesh__.load(name)
-            print('Object: %s' % self.object_name())
-            print('Points: %d' % len(self.__mesh__.x))
-            print('FE: %d - %s' % (len(self.__mesh__.fe), self.__mesh__.fe_name()))
+            print(('Object: %s' % self.object_name()))
+            print(('Points: %d' % len(self.__mesh__.x)))
+            print(('FE: %d - %s' % (len(self.__mesh__.fe), self.__mesh__.fe_name())))
         except TFEMException as err:
             err.print_error()
             return False
@@ -217,7 +219,7 @@ class TObject:
         if self.__params__.problem_type == 'dynamic':
             fun_name += ' (t = %5.2f)' % t
 
-        plt.gcf().canvas.set_window_title('Result image')
+        # plt.gcf().canvas.set_window_title('Result image')
         plt.title(fun_name)
         plt.show()
 
@@ -263,7 +265,7 @@ class TObject:
         ax.set_xlim(min(self.__mesh__.x), max(self.__mesh__.x))
         ax.set_ylim(min(self.__mesh__.y), max(self.__mesh__.y))
         ax.set_zlim(min(self.__mesh__.z), max(self.__mesh__.z))
-        plt.colorbar(c_map)
+        plt.colorbar(c_map, ax=ax)
 
     # Визуализация заданной функции в случае кубического КЭ
     def __plot_3d_hex__(self, index):
@@ -298,7 +300,7 @@ class TObject:
         ax.set_xlim(min(self.__mesh__.x), max(self.__mesh__.x))
         ax.set_ylim(min(self.__mesh__.y), max(self.__mesh__.y))
         ax.set_zlim(min(self.__mesh__.z), max(self.__mesh__.z))
-        plt.colorbar(c_map)
+        plt.colorbar(c_map, ax=ax)
 
     # Определене цвета поверхностной грани
     def get_surface_color(self, res):
